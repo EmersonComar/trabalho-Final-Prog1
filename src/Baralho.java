@@ -8,6 +8,7 @@ public class Baralho {
     public Baralho() {
         this.cartas = new ArrayList<>();
         criarBaralho();
+        embaralhar();
     }
 
     private void criarBaralho() {

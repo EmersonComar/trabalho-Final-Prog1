@@ -10,7 +10,7 @@ public class Tabuleiro {
     }
 
     private void inicializarLinhas() {
-        // Lógica para inicializar as linhas do tabuleiro
+        
     }
 
     public void exibirTabuleiro() {
