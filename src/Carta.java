@@ -1,6 +1,9 @@
 public class Carta implements Comparable<Carta> {
     private int numero;
 
+    public Carta(){
+    }
+    
     public Carta(int numero) {
         this.numero = numero;
     }

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -8,40 +9,90 @@ public class Jogo {
     private Tabuleiro tabuleiro;
 
     public void iniciarJogo() {
-        // Solicitar ao usuário o número de jogadores
-        int numeroDeJogadores = solicitarNumeroJogadores();
 
-        // Verificar se o número de jogadores está dentro da faixa permitida
+        // Inicializa o baralho e tabuleiro
+        baralho = new Baralho();
+        tabuleiro = new Tabuleiro(baralho, 5);
+
+        
+        
+        // Solicitar os números de jogadores e verificar se está dentro da faixa permitida
+        int numeroDeJogadores = solicitarNumeroJogadores();
         if (numeroDeJogadores < 3 || numeroDeJogadores > 6) {
             System.out.println("Número de jogadores inválido. O jogo suporta de 3 a 6 jogadores.");
             return;
         }
 
-        // Criar e inicializar jogadores
+        // Cria e inicializa os jogadores
         jogadores = new ArrayList<>();
         for (int i = 1; i <= numeroDeJogadores; i++) {
             String nomeJogador = solicitarNomeJogador(i);
-            Jogador jogador = new Jogador(nomeJogador);
+            Jogador jogador = new Jogador(nomeJogador, baralho.distribuirCartas(12));
             jogadores.add(jogador);
         }
+    }
 
-        // Inicializar baralho e tabuleiro
-        baralho = new Baralho();
-        tabuleiro = new Tabuleiro();
+    public void rodada(){
+        List<Carta> listaJogadas = new ArrayList<>();
+        tabuleiro.exibirTabuleiro();
+        for(Jogador jogador: jogadores){
+            jogador.exibirMao();
+            Carta jogada = new Carta();
+            jogada = solicitarJogada(jogador);
+            listaJogadas.add(jogada);
+            System.out.println("---");
+        }
 
-        // Outras inicializações do jogo
+    }
+
+    // Métodos auxiliares
+    
+
+
+    private Carta solicitarJogada(Jogador jogador) {
+        Scanner scan = new Scanner(System.in);
+
+        System.out.print("Escolha o número da carta: ");
+
+        while (true) {
+            try {
+                int escolha = scan.nextInt();
+
+                if (validarEntrada(escolha, jogador)) {
+                    return new Carta(escolha);
+                } else {
+                    System.out.println("---");
+                    System.out.println("Valor incorreto. Escolha uma das cartas disponíveis: ");
+                    System.out.println("---");
+                    jogador.exibirMao();
+                    System.out.print("Escolha o número da carta: ");
+                }
+            } catch (InputMismatchException e) {
+                System.out.print("Entrada inválida. Digite novamente: ");
+                scan.next();
+            }
+        }
+    }
+
+    private boolean validarEntrada(int escolha, Jogador jogador) {
+        for (Carta carta : jogador.getMao()) {
+            if (carta.compareTo(new Carta(escolha)) == 0) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private int solicitarNumeroJogadores() {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
 
         System.out.print("Digite o número de jogadores (entre 3 e 6): ");
-        while (!scanner.hasNextInt()) {
-            System.out.print("Entrada inválida. Digite novamente: ");
-            scanner.next();  // Consumir entrada inválida
+        while (!scan.hasNextInt()) {
+            System.out.print("Entrada inválida. Digite novamente o número de jogadores (entre 3 e 6): ");
+            scan.next();  // Consumir entrada inválida
         }
 
-        return scanner.nextInt();
+        return scan.nextInt();
     }
 
     private String solicitarNomeJogador(int numeroJogador) {
@@ -51,5 +102,4 @@ public class Jogo {
         return scanner.nextLine();
     }
 
-    // Implementar métodos adicionais conforme necessário
 }

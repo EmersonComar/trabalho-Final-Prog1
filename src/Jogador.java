@@ -1,14 +1,15 @@
 import java.util.List;
+import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Jogador {
     private String nome;
-    private List<Carta> mao;
+    private List<Carta> mao = new ArrayList<>();
     private int pontos;
 
-    public Jogador(String nome) {
+    public Jogador(String nome, List<Carta> cartas) {
         this.nome = nome;
-        this.mao = new ArrayList<>();
+        this.mao = cartas;
         this.pontos = 0;
     }
 
@@ -24,5 +25,12 @@ public class Jogador {
         return pontos;
     }
 
-    // Implementar métodos adicionais conforme necessário
+    public void exibirMao(){
+        System.out.printf("Nome: %s\n", this.nome);
+        System.out.println("Cartas disponíveis:");
+        for(int i=0; i<this.mao.size(); i++){
+            System.out.printf("%d ", this.mao.get(i).getNumero());
+        }
+        System.out.println();
+    }
 }

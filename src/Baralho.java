@@ -22,13 +22,16 @@ public class Baralho {
     }
 
     public List<Carta> distribuirCartas(int quantidade) {
-        if (quantidade > cartas.size()) {
-            throw new IllegalArgumentException("Quantidade de cartas a serem distribuídas maior que o número de cartas no baralho.");
-        }
-
+        
         List<Carta> cartasDistribuidas = new ArrayList<>(cartas.subList(0, quantidade));
         cartas.subList(0, quantidade).clear();
 
         return cartasDistribuidas;
+    }
+
+    public Carta distribuirUmaCarta(){
+        Carta carta = new Carta(this.cartas.get(0).getNumero());
+        this.cartas.remove(0);
+        return carta;
     }
 }
