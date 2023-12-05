@@ -33,6 +33,10 @@ public class Jogador{
         return pontos;
     }
 
+    public void setPontos(int pontos) {
+        this.pontos = pontos;
+    }
+
     public void exibirMao(){
         System.out.printf("Nome: %s\n", this.nome);
         System.out.println("Cartas disponíveis:");

@@ -43,7 +43,7 @@ public class Jogo {
             System.out.println("---");
         }
 
-        // trapaça; estudar profundamente
+        // trapaça para ordenar Jogadores com base no atributo numero da Carta; estudar profundamente
         Collections.sort(jogadores, Comparator.comparingInt(jogador -> jogador.getJogada().getNumero()));
 
         

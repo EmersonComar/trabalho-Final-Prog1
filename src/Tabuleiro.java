@@ -32,7 +32,20 @@ public class Tabuleiro {
         }
         ultimasCartasDoTabuleiro.sort(Collections.reverseOrder());
 
-        
+        for(Jogador jogador: jogadores){
+            for(int i=0; i<this.linhas.size(); i++){
+                List<Carta> linha = this.linhas.get(i);
+                Carta ultimaCarta = linha.get(linha.size() - 1);
+
+                if(jogador.getJogada().compareTo(ultimaCarta) == 1){
+                    if(linha.size() == 5){
+                        jogador.setPontos(jogador.getPontos() + this.somarPontuacao(linha));
+                        this.linhas.get(i).clear();
+                        this.linhas.get(i).set(0, jogador.getJogada());
+                    }
+                }
+            }
+        }
 
     }
 
@@ -44,5 +57,13 @@ public class Tabuleiro {
             trilha.add(baralho.distribuirUmaCarta());
             linhas.add(trilha);
         }
+    }
+
+    private int somarPontuacao(List<Carta> linha){
+        int pontos = 0;
+        for(Carta carta: linha){
+            pontos += carta.getPonto();
+        }
+        return pontos;
     }
 }
