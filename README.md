@@ -1,15 +1,18 @@
-## Getting Started
+## Trabalho Final de Prog 1
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+implementar um Jogo de Cartas.</br>
+Acessar arquivo `Trabalho_Final.pdf` para detalhes referentes à implementação.
 
-## Folder Structure
+<h2>Explicação completa sobre a minha implementação</h2> 
 
-The workspace contains two folders by default, where:
+A seguir será explicado todos os detalhes do projeto. </br>
+Será detalhado o funcionamento de todas as classes e métodos, bem como a lógica envolvida.
+
+<h4>Estrutura dos arquivos:</h4>
 
 - `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+<h4>Classes:</h4>
 
 > If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
 
