@@ -4,11 +4,9 @@ public class Main {
 
         jogo.iniciarJogo();
         for(int rodadas=1; rodadas<=1; rodadas++){
-            System.out.printf("\t\t\t--- Rodada %d ---\n", rodadas);
+            System.out.printf("\t\t\t------ Rodada %d ------\n", rodadas);
             jogo.rodada();
         }
-
-
 
 
 

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Tabuleiro {
@@ -7,14 +8,6 @@ public class Tabuleiro {
     public Tabuleiro(Baralho baralho, int qtdLinhas) {
         this.linhas = new ArrayList<>();
         inicializarLinhas(baralho, qtdLinhas);
-    }
-
-    private void inicializarLinhas(Baralho baralho, int qtdLinhas) {
-        for(int i=0; i<qtdLinhas; i++){
-            List<Carta> trilha = new ArrayList<>();
-            trilha.add(baralho.distribuirUmaCarta());
-            linhas.add(trilha);
-        }
     }
 
     public void exibirTabuleiro() {
@@ -29,4 +22,32 @@ public class Tabuleiro {
         System.out.printf("\t\t---------------------------------------\n");
     }
 
+    public void atualizaTabuleiro(List<Carta> jogadas){
+        List<Carta> ultimasCartasDoTabuleiro = new ArrayList<>();
+
+        // Obtém as últimas cartas do tabuleiro
+        for (List<Carta> linha : this.linhas) {
+            if (!linha.isEmpty()) {
+                ultimasCartasDoTabuleiro.add(linha.get(linha.size() - 1));
+            }
+        }
+
+        // Ordena as últimas cartas em ordem decrescente
+        ultimasCartasDoTabuleiro.sort(Collections.reverseOrder());
+
+        // Adiciona as jogadas válidas ao tabuleiro
+        
+        
+
+    }
+
+    // Métodos auxiliares
+
+    private void inicializarLinhas(Baralho baralho, int qtdLinhas) {
+        for(int i=0; i<qtdLinhas; i++){
+            List<Carta> trilha = new ArrayList<>();
+            trilha.add(baralho.distribuirUmaCarta());
+            linhas.add(trilha);
+        }
+    }
 }

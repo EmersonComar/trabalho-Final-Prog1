@@ -11,16 +11,6 @@ public class Baralho {
         embaralhar();
     }
 
-    private void criarBaralho() {
-        for (int i = 1; i <= 109; i++) {
-            cartas.add(new Carta(i));
-        }
-    }
-
-    public void embaralhar() {
-        Collections.shuffle(cartas);
-    }
-
     public List<Carta> distribuirCartas(int quantidade) {
         
         List<Carta> cartasDistribuidas = new ArrayList<>(cartas.subList(0, quantidade));
@@ -33,5 +23,17 @@ public class Baralho {
         Carta carta = new Carta(this.cartas.get(0).getNumero());
         this.cartas.remove(0);
         return carta;
+    }
+
+    // Métodos auxiliares
+
+    private void criarBaralho() {
+        for (int i = 1; i <= 109; i++) {
+            cartas.add(new Carta(i));
+        }
+    }
+
+    private void embaralhar() {
+        Collections.shuffle(cartas);
     }
 }

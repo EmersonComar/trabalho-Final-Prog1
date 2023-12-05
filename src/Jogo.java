@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -42,12 +43,12 @@ public class Jogo {
             listaJogadas.add(jogada);
             System.out.println("---");
         }
-
+        Collections.sort(listaJogadas);
+        tabuleiro.atualizaTabuleiro(listaJogadas);
+        tabuleiro.exibirTabuleiro();
     }
 
     // Métodos auxiliares
-    
-
 
     private Carta solicitarJogada(Jogador jogador) {
         Scanner scan = new Scanner(System.in);
