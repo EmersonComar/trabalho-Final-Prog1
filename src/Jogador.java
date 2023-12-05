@@ -38,6 +38,16 @@ public class Jogador{
         this.pontos = pontos;
     }
 
+    public void removerCartaDaMao(Carta carta){
+        for(int i=0; i<this.mao.size(); i++){
+            Carta cartaDaMao = this.mao.get(i);
+            if(carta.compareTo(cartaDaMao) == 0){
+                this.mao.remove(i);
+                System.out.printf("Carta %d removida com sucesso", cartaDaMao.getNumero());
+            }
+        }
+    }
+
     public void exibirMao(){
         Collections.sort(this.mao);
         System.out.printf("Nome: %s\n", this.nome);

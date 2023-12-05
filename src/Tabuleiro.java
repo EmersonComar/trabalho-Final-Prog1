@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Tabuleiro {
@@ -34,6 +33,14 @@ public class Tabuleiro {
                 Carta ultimaCartadaLinha = linha.get(linha.size() - 1);
         
                 if((jogada.compareTo(ultimaCartadaLinha)) == 1){
+
+                    if(linha.size() == 5){
+                        jogador.setPontos(jogador.getPontos() + somarPontuacao(linha));
+                        this.linhas.get(i).clear();
+                        diferenca = 1;
+                        index = 0;
+                    }
+
                     if((jogada.getNumero() - ultimaCartadaLinha.getNumero()) < diferenca){
                         diferenca = (jogada.getNumero() - ultimaCartadaLinha.getNumero());
                         index = i;

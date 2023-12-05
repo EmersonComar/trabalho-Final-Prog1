@@ -3,7 +3,7 @@ public class Main {
         Jogo jogo = new Jogo();
 
         jogo.iniciarJogo();
-        for(int rodadas=1; rodadas<=1; rodadas++){
+        for(int rodadas=1; rodadas<=12; rodadas++){
             System.out.printf("\t\t\t------ Rodada %d ------\n", rodadas);
             jogo.rodada();
         }

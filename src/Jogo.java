@@ -39,7 +39,9 @@ public class Jogo {
         tabuleiro.exibirTabuleiro();
         for(Jogador jogador: jogadores){
             jogador.exibirMao();
-            jogador.setJogada(solicitarJogada(jogador));
+            Carta jogada = solicitarJogada(jogador);
+            jogador.setJogada(jogada);
+            jogador.removerCartaDaMao(jogada);
             System.out.println("---");
         }
 
@@ -48,9 +50,7 @@ public class Jogo {
         
         exibeOrdem(jogadores);
 
-        tabuleiro.atualizaTabuleiro(jogadores);
-        tabuleiro.exibirTabuleiro();
-        
+        tabuleiro.atualizaTabuleiro(jogadores);        
     }
 
     // Métodos auxiliares
