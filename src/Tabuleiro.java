@@ -23,35 +23,24 @@ public class Tabuleiro {
     }
 
     public void atualizaTabuleiro(List<Jogador> jogadores) {
-        List<Carta> ultimasCartasDoTabuleiro = new ArrayList<>();
-    
-        for (List<Carta> linha : this.linhas) {
-            if (!linha.isEmpty()) {
-                ultimasCartasDoTabuleiro.add(linha.get(linha.size() - 1));
-            }
-        }
-        ultimasCartasDoTabuleiro.sort(Collections.reverseOrder());
-    
         for (Jogador jogador : jogadores) {
             Carta jogada = jogador.getJogada();
+            int index = 0;
+            int diferenca = 110;
 
-            boolean cartaJaUsada = false;
 
             for (int i = 0; i < this.linhas.size(); i++) {
                 List<Carta> linha = this.linhas.get(i);
-
-                if (!cartaJaUsada && jogada.compareTo(ultimasCartasDoTabuleiro.get(i)) == 1) {
-                    if (linha.size() == 5) {
-                        jogador.setPontos(jogador.getPontos() + this.somarPontuacao(linha));
-                        linha.clear();
-                        linha.add(jogada);
-                        cartaJaUsada = true;  
-                        break;
+                Carta ultimaCartadaLinha = linha.get(linha.size() - 1);
+        
+                if((jogada.compareTo(ultimaCartadaLinha)) == 1){
+                    if((jogada.getNumero() - ultimaCartadaLinha.getNumero()) < diferenca){
+                        diferenca = (jogada.getNumero() - ultimaCartadaLinha.getNumero());
+                        index = i;
                     }
-                    linha.add(jogada);
-                    cartaJaUsada = true;
                 }
             }
+            this.linhas.get(index).add(jogada);
         }
     }
 

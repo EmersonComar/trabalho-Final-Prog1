@@ -41,6 +41,7 @@ public class Jogador{
     public void exibirMao(){
         Collections.sort(this.mao);
         System.out.printf("Nome: %s\n", this.nome);
+        System.out.printf("Pontos: %d\n", this.pontos);
         System.out.println("Cartas disponíveis:");
         for(int i=0; i<this.mao.size(); i++){
             System.out.printf("%d ", this.mao.get(i).getNumero());

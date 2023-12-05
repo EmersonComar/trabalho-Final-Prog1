@@ -103,17 +103,17 @@ public class Jogo {
         System.out.print("Digite o número de jogadores (entre 3 e 6): ");
         while (!scan.hasNextInt()) {
             System.out.print("Entrada inválida. Digite novamente o número de jogadores (entre 3 e 6): ");
-            scan.next();  // Consumir entrada inválida
+            scan.next(); 
         }
 
         return scan.nextInt();
     }
 
     private String solicitarNomeJogador(int numeroJogador) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
 
         System.out.print("Digite o nome do Jogador " + numeroJogador + ": ");
-        return scanner.nextLine();
+        return scan.nextLine();
     }
 
 }
