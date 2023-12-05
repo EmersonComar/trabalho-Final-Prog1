@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -34,18 +35,18 @@ public class Jogo {
     }
 
     public void rodada(){
-        List<Carta> listaJogadas = new ArrayList<>();
+        
         tabuleiro.exibirTabuleiro();
         for(Jogador jogador: jogadores){
             jogador.exibirMao();
-            Carta jogada = new Carta();
-            jogada = solicitarJogada(jogador);
-            listaJogadas.add(jogada);
+            jogador.setJogada(solicitarJogada(jogador));
             System.out.println("---");
         }
-        Collections.sort(listaJogadas);
-        tabuleiro.atualizaTabuleiro(listaJogadas);
-        tabuleiro.exibirTabuleiro();
+
+        // trapaça; estudar profundamente
+        Collections.sort(jogadores, Comparator.comparingInt(jogador -> jogador.getJogada().getNumero()));
+
+        
     }
 
     // Métodos auxiliares

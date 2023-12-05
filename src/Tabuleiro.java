@@ -22,21 +22,16 @@ public class Tabuleiro {
         System.out.printf("\t\t---------------------------------------\n");
     }
 
-    public void atualizaTabuleiro(List<Carta> jogadas){
+    public void atualizaTabuleiro(List<Jogador> jogadores){
         List<Carta> ultimasCartasDoTabuleiro = new ArrayList<>();
 
-        // Obtém as últimas cartas do tabuleiro
         for (List<Carta> linha : this.linhas) {
             if (!linha.isEmpty()) {
                 ultimasCartasDoTabuleiro.add(linha.get(linha.size() - 1));
             }
         }
-
-        // Ordena as últimas cartas em ordem decrescente
         ultimasCartasDoTabuleiro.sort(Collections.reverseOrder());
 
-        // Adiciona as jogadas válidas ao tabuleiro
-        
         
 
     }

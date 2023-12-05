@@ -1,15 +1,24 @@
 import java.util.List;
 import java.util.ArrayList;
 
-public class Jogador {
+public class Jogador{
     private String nome;
     private List<Carta> mao = new ArrayList<>();
+    private Carta jogada;
     private int pontos;
 
     public Jogador(String nome, List<Carta> cartas) {
         this.nome = nome;
         this.mao = cartas;
         this.pontos = 0;
+    }
+
+    public Carta getJogada() {
+        return jogada;
+    }
+
+    public void setJogada(Carta jogada) {
+        this.jogada = jogada;
     }
 
     public String getNome() {
