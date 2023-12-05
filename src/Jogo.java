@@ -46,6 +46,8 @@ public class Jogo {
         // trapaça para ordenar Jogadores com base no atributo numero da Carta; estudar profundamente
         Collections.sort(jogadores, Comparator.comparingInt(jogador -> jogador.getJogada().getNumero()));
 
+        tabuleiro.atualizaTabuleiro(jogadores);
+        tabuleiro.exibirTabuleiro();
         
     }
 

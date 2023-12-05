@@ -22,31 +22,37 @@ public class Tabuleiro {
         System.out.printf("\t\t---------------------------------------\n");
     }
 
-    public void atualizaTabuleiro(List<Jogador> jogadores){
+    public void atualizaTabuleiro(List<Jogador> jogadores) {
         List<Carta> ultimasCartasDoTabuleiro = new ArrayList<>();
-
+    
         for (List<Carta> linha : this.linhas) {
             if (!linha.isEmpty()) {
                 ultimasCartasDoTabuleiro.add(linha.get(linha.size() - 1));
             }
         }
         ultimasCartasDoTabuleiro.sort(Collections.reverseOrder());
+    
+        for (Jogador jogador : jogadores) {
+            Carta jogada = jogador.getJogada();
 
-        for(Jogador jogador: jogadores){
-            for(int i=0; i<this.linhas.size(); i++){
+            boolean cartaJaUsada = false;
+
+            for (int i = 0; i < this.linhas.size(); i++) {
                 List<Carta> linha = this.linhas.get(i);
-                Carta ultimaCarta = linha.get(linha.size() - 1);
 
-                if(jogador.getJogada().compareTo(ultimaCarta) == 1){
-                    if(linha.size() == 5){
+                if (!cartaJaUsada && jogada.compareTo(ultimasCartasDoTabuleiro.get(i)) == 1) {
+                    if (linha.size() == 5) {
                         jogador.setPontos(jogador.getPontos() + this.somarPontuacao(linha));
-                        this.linhas.get(i).clear();
-                        this.linhas.get(i).set(0, jogador.getJogada());
+                        linha.clear();
+                        linha.add(jogada);
+                        cartaJaUsada = true;  
+                        break;
                     }
+                    linha.add(jogada);
+                    cartaJaUsada = true;
                 }
             }
         }
-
     }
 
     // Métodos auxiliares
