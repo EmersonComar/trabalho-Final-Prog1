@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Jogador{
     private String nome;
@@ -38,6 +39,7 @@ public class Jogador{
     }
 
     public void exibirMao(){
+        Collections.sort(this.mao);
         System.out.printf("Nome: %s\n", this.nome);
         System.out.println("Cartas disponíveis:");
         for(int i=0; i<this.mao.size(); i++){

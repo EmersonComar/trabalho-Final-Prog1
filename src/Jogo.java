@@ -45,6 +45,8 @@ public class Jogo {
 
         // trapaça para ordenar Jogadores com base no atributo numero da Carta; estudar profundamente
         Collections.sort(jogadores, Comparator.comparingInt(jogador -> jogador.getJogada().getNumero()));
+        
+        exibeOrdem(jogadores);
 
         tabuleiro.atualizaTabuleiro(jogadores);
         tabuleiro.exibirTabuleiro();
@@ -52,6 +54,14 @@ public class Jogo {
     }
 
     // Métodos auxiliares
+
+    private void exibeOrdem(List<Jogador> jogadores){
+        System.out.println("Ordem de jogada: ");
+        for(Jogador jogador: jogadores){
+            System.out.printf("%d ", jogador.getJogada().getNumero());
+        }
+        System.out.println();
+    }
 
     private Carta solicitarJogada(Jogador jogador) {
         Scanner scan = new Scanner(System.in);
