@@ -36,18 +36,13 @@ public class Jogo {
 
         // Solicitar os números de jogadores e verificar se está dentro da faixa permitida
         int numeroDeJogadores = solicitarNumeroJogadores();
-        if (numeroDeJogadores < 3 || numeroDeJogadores > 6) {
+        if (validaQuantidadeJogadores(numeroDeJogadores)) {
             System.out.println("Número de jogadores inválido. O jogo suporta de 3 a 6 jogadores.");
             return false;
         }
 
         // Cria e inicializa os jogadores
-        jogadores = new ArrayList<>();
-        for (int i = 1; i <= numeroDeJogadores; i++) {
-            String nomeJogador = solicitarNomeJogador(i);
-            Jogador jogador = new Jogador(nomeJogador, baralho.distribuirCartas(12));
-            jogadores.add(jogador);
-        }
+        jogadores = criarJogadores(numeroDeJogadores);
 
         return true;
     }
@@ -105,6 +100,31 @@ public class Jogo {
         } else if (metodo.equals("valor")){
             Collections.sort(jogadores, Comparator.comparingInt(jogador -> jogador.getPontos()));
         }
+    }
+
+    /**
+     * Cria e inicializa todos os jogadores da partida.
+     * @param numeroDeJogadores Número de jogadores participantes.
+     * @return Lista de jogadores da partida.
+     */
+    private List<Jogador> criarJogadores(int numeroDeJogadores){
+        jogadores = new ArrayList<>();
+        for (int i = 1; i <= numeroDeJogadores; i++) {
+            String nomeJogador = solicitarNomeJogador(i);
+            Jogador jogador = new Jogador(nomeJogador, baralho.distribuirCartas(12));
+            jogadores.add(jogador);
+        }
+
+        return jogadores;
+    }
+
+    /**
+     * Valida se a quantidade de jogadores está no intervalo permitido.
+     * @param numeroDeJogadores A quantidade de jogadores que pretendem jogar.
+     * @return Se a quantidade de jogadores que pretendem jogar estão no intervalo permitido.
+     */
+    private boolean validaQuantidadeJogadores(int numeroDeJogadores){
+        return numeroDeJogadores < 3 || numeroDeJogadores > 6;
     }
 
     /**
