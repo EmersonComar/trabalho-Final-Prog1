@@ -24,34 +24,53 @@ public class Tabuleiro {
     public void atualizaTabuleiro(List<Jogador> jogadores) {
         for (Jogador jogador : jogadores) {
             Carta jogada = jogador.getJogada();
-            int index = 0;
+            Carta maiorCarta = new Carta(0);
+            boolean cartaMenorEncontrada = false;
+            int indexDaLinha = 0;
             int diferenca = 110;
 
+            for (int i=0; i<linhas.size(); i++){
+                List<Carta> trilha = linhas.get(i);
+                Carta ultimaCartaDaTrilha = trilha.get(trilha.size() - 1);
 
-            for (int i = 0; i < this.linhas.size(); i++) {
-                List<Carta> linha = this.linhas.get(i);
-                Carta ultimaCartadaLinha = linha.get(linha.size() - 1);
-        
-                if((jogada.compareTo(ultimaCartadaLinha)) == 1){
-
-                    if(linha.size() == 5){
-                        jogador.setPontos(jogador.getPontos() + somarPontuacao(linha));
-                        this.linhas.get(i).clear();
-                        diferenca = 1;
-                        index = 0;
+                if(jogada.compareTo(ultimaCartaDaTrilha) == 1){
+                    int diferencaDasCartas = calculaDiferenca(jogada, ultimaCartaDaTrilha);
+                    if(diferenca > diferencaDasCartas){
+                        diferenca = diferencaDasCartas;
+                        indexDaLinha = i;
+                        cartaMenorEncontrada = true;
                     }
-
-                    if((jogada.getNumero() - ultimaCartadaLinha.getNumero()) < diferenca){
-                        diferenca = (jogada.getNumero() - ultimaCartadaLinha.getNumero());
-                        index = i;
+                }else{
+                    if(!cartaMenorEncontrada && ultimaCartaDaTrilha.compareTo(maiorCarta) == 1){
+                        maiorCarta = ultimaCartaDaTrilha;
+                        indexDaLinha = i;
                     }
                 }
             }
-            this.linhas.get(index).add(jogada);
+
+            if(cartaMenorEncontrada){
+                List<Carta> trilha = linhas.get(indexDaLinha);
+                if(trilha.size() == 5){
+                    jogador.setPontos(jogador.getPontos() + somarPontuacao(trilha));
+                    linhas.get(indexDaLinha).clear();
+                    linhas.get(indexDaLinha).add(jogada);
+                }else{
+                    linhas.get(indexDaLinha).add(jogada);
+                }
+            }else{
+                List<Carta> trilha = linhas.get(indexDaLinha);
+                jogador.setPontos(jogador.getPontos() + somarPontuacao(trilha));
+                linhas.get(indexDaLinha).clear();
+                linhas.get(indexDaLinha).add(jogada);
+            }
         }
     }
 
     // Métodos auxiliares
+
+    private int calculaDiferenca(Carta jogada, Carta ultimaCartaDaTrilha){
+        return jogada.getNumero() - ultimaCartaDaTrilha.getNumero();
+    }
 
     private void inicializarLinhas(Baralho baralho, int qtdLinhas) {
         for(int i=0; i<qtdLinhas; i++){

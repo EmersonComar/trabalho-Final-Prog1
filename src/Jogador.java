@@ -43,7 +43,6 @@ public class Jogador{
             Carta cartaDaMao = this.mao.get(i);
             if(carta.compareTo(cartaDaMao) == 0){
                 this.mao.remove(i);
-                System.out.printf("Carta %d removida com sucesso", cartaDaMao.getNumero());
             }
         }
     }

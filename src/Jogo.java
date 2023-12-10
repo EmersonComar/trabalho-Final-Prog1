@@ -10,7 +10,7 @@ public class Jogo {
     private Baralho baralho;
     private Tabuleiro tabuleiro;
 
-    public void iniciarJogo() {
+    public boolean iniciarJogo() {
 
         // Inicializa o baralho e tabuleiro
         baralho = new Baralho();
@@ -22,7 +22,7 @@ public class Jogo {
         int numeroDeJogadores = solicitarNumeroJogadores();
         if (numeroDeJogadores < 3 || numeroDeJogadores > 6) {
             System.out.println("Número de jogadores inválido. O jogo suporta de 3 a 6 jogadores.");
-            return;
+            return false;
         }
 
         // Cria e inicializa os jogadores
@@ -32,6 +32,8 @@ public class Jogo {
             Jogador jogador = new Jogador(nomeJogador, baralho.distribuirCartas(12));
             jogadores.add(jogador);
         }
+
+        return true;
     }
 
     public void rodada(){
@@ -102,7 +104,7 @@ public class Jogo {
 
         System.out.print("Digite o número de jogadores (entre 3 e 6): ");
         while (!scan.hasNextInt()) {
-            System.out.print("Entrada inválida. Digite novamente o número de jogadores (entre 3 e 6): ");
+            System.out.print("Entrada inválida.\nDigite novamente o número de jogadores (entre 3 e 6): ");
             scan.next(); 
         }
 
