@@ -5,19 +5,29 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * A classe Jogo representa um jogo de cartas com jogadores, um baralho e um tabuleiro.
+ */
 public class Jogo {
+
+    /** A lista de jogadores participando do jogo. */
     private List<Jogador> jogadores;
+
+    /** O baralho utilizado no jogo. */
     private Baralho baralho;
+
+    /** O tabuleiro do jogo. */
     private Tabuleiro tabuleiro;
 
+    /**
+     * Inicializa o jogo, criando o baralho, o tabuleiro e configurando o número de jogadores.
+     * @return true se o jogo foi inicializado com sucesso, false se houve algum erro.
+     */
     public boolean iniciarJogo() {
-
         // Inicializa o baralho e tabuleiro
         baralho = new Baralho();
         tabuleiro = new Tabuleiro(baralho, 5);
 
-        
-        
         // Solicitar os números de jogadores e verificar se está dentro da faixa permitida
         int numeroDeJogadores = solicitarNumeroJogadores();
         if (numeroDeJogadores < 3 || numeroDeJogadores > 6) {
@@ -36,8 +46,11 @@ public class Jogo {
         return true;
     }
 
+    /**
+     * Executa uma rodada do jogo, exibindo o tabuleiro, as mãos dos jogadores, solicitando jogadas,
+     * ordenando os jogadores e atualizando o tabuleiro.
+     */
     public void rodada(){
-        
         tabuleiro.exibirTabuleiro();
         for(Jogador jogador: jogadores){
             jogador.exibirMao();
@@ -52,6 +65,9 @@ public class Jogo {
         tabuleiro.atualizaTabuleiro(jogadores);        
     }
 
+    /**
+     * Exibe os vencedores do jogo, ordenando os jogadores pelo valor dos pontos.
+     */
     public void exibirVencedores(){
         ordenarJogadores("valor");
         System.out.printf("\n\n\t\t\t------ Jogo finalizado ------\n\n");
@@ -70,16 +86,25 @@ public class Jogo {
             posicaoAnterior = posicao;
         }
     }
+
     // Métodos auxiliares
 
+    /**
+     * Ordena os jogadores com base no número da carta jogada ou no valor dos pontos.
+     * @param metodo O método de ordenação ("numero" ou "valor").
+     */
     private void ordenarJogadores(String  metodo){
-        if (metodo == "numero"){
+        if (metodo.equals("numero")){
             Collections.sort(jogadores, Comparator.comparingInt(jogador -> jogador.getJogada().getNumero()));
-        }else if (metodo == "valor"){
+        } else if (metodo.equals("valor")){
             Collections.sort(jogadores, Comparator.comparingInt(jogador -> jogador.getPontos()));
         }
     }
 
+    /**
+     * Exibe a ordem de jogada dos jogadores com base no número da carta jogada.
+     * @param jogadores A lista de jogadores.
+     */
     private void exibeOrdem(List<Jogador> jogadores){
         System.out.println("Ordem de jogada: ");
         for(Jogador jogador: jogadores){
@@ -88,6 +113,11 @@ public class Jogo {
         System.out.println();
     }
 
+    /**
+     * Solicita ao jogador a escolha do número de uma carta da sua mão.
+     * @param jogador O jogador que está fazendo a jogada.
+     * @return A carta escolhida pelo jogador.
+     */
     private Carta solicitarJogada(Jogador jogador) {
         Scanner scan = new Scanner(System.in);
 
@@ -113,6 +143,12 @@ public class Jogo {
         }
     }
 
+    /**
+     * Valida se a escolha do jogador é uma das cartas disponíveis na sua mão.
+     * @param escolha A escolha do jogador.
+     * @param jogador O jogador que está fazendo a jogada.
+     * @return true se a escolha for válida, false caso contrário.
+     */
     private boolean validarEntrada(int escolha, Jogador jogador) {
         for (Carta carta : jogador.getMao()) {
             if (carta.compareTo(new Carta(escolha)) == 0) {
@@ -122,6 +158,10 @@ public class Jogo {
         return false;
     }
 
+    /**
+     * Solicita ao jogador o número desejado de participantes no jogo.
+     * @return O número de jogadores escolhido.
+     */
     private int solicitarNumeroJogadores() {
         Scanner scan = new Scanner(System.in);
 
@@ -134,6 +174,11 @@ public class Jogo {
         return scan.nextInt();
     }
 
+    /**
+     * Solicita ao jogador o nome para identificar o jogador no jogo.
+     * @param numeroJogador O número do jogador.
+     * @return O nome do jogador.
+     */
     private String solicitarNomeJogador(int numeroJogador) {
         Scanner scan = new Scanner(System.in);
 
