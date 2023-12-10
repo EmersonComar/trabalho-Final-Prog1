@@ -47,15 +47,38 @@ public class Jogo {
             System.out.println("---");
         }
 
-        // trapaça para ordenar Jogadores com base no atributo numero da Carta; estudar profundamente
-        Collections.sort(jogadores, Comparator.comparingInt(jogador -> jogador.getJogada().getNumero()));
-        
+        ordenarJogadores("numero");
         exibeOrdem(jogadores);
-
         tabuleiro.atualizaTabuleiro(jogadores);        
     }
 
+    public void exibirVencedores(){
+        ordenarJogadores("valor");
+        System.out.printf("\n\n\t\t\t------ Jogo finalizado ------\n\n");
+        tabuleiro.exibirTabuleiro();
+        System.out.println("Vencedores: ");
+        int posicao = 1;
+        int posicaoAnterior = 0;
+
+        for (int i = 0; i < jogadores.size(); i++) {
+            Jogador jogador = jogadores.get(i);
+
+            if (i > 0 && jogador.getPontos() != jogadores.get(i - 1).getPontos()) {
+                posicao = posicaoAnterior + 1;
+            }
+            System.out.printf("%dº %s - %d ponto(s)\n", posicao, jogador.getNome(), jogador.getPontos());
+            posicaoAnterior = posicao;
+        }
+    }
     // Métodos auxiliares
+
+    private void ordenarJogadores(String  metodo){
+        if (metodo == "numero"){
+            Collections.sort(jogadores, Comparator.comparingInt(jogador -> jogador.getJogada().getNumero()));
+        }else if (metodo == "valor"){
+            Collections.sort(jogadores, Comparator.comparingInt(jogador -> jogador.getPontos()));
+        }
+    }
 
     private void exibeOrdem(List<Jogador> jogadores){
         System.out.println("Ordem de jogada: ");

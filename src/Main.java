@@ -7,6 +7,7 @@ public class Main {
                 System.out.printf("\t\t\t------ Rodada %d ------\n", rodadas);
                 jogo.rodada();
             }
+            jogo.exibirVencedores();
         }
     }
 }

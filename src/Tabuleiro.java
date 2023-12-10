@@ -10,7 +10,7 @@ public class Tabuleiro {
     }
 
     public void exibirTabuleiro() {
-        System.out.println("\t\t---------------Tabuleiro----------------");
+        System.out.println("\t\t-------------Tabuleiro--------------");
         for(int i=0; i<this.linhas.size(); i++){
             System.out.printf("Linha %d\t\t|", i+1);
             for(int j=0; j<this.linhas.get(i).size(); j++){
@@ -18,7 +18,7 @@ public class Tabuleiro {
             }
             System.out.println();
         }
-        System.out.printf("\t\t---------------------------------------\n");
+        System.out.printf("\t\t-----------------------------------\n");
     }
 
     public void atualizaTabuleiro(List<Jogador> jogadores) {
