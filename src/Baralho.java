@@ -12,6 +12,9 @@ public class Baralho {
     }
 
     public List<Carta> distribuirCartas(int quantidade) {
+        if(quantidade > cartas.size()){
+            throw new IllegalArgumentException("Quantidade de cartas insuficientes");
+        }
         
         List<Carta> cartasDistribuidas = new ArrayList<>(cartas.subList(0, quantidade));
         cartas.subList(0, quantidade).clear();
@@ -20,9 +23,11 @@ public class Baralho {
     }
 
     public Carta distribuirUmaCarta(){
-        Carta carta = new Carta(this.cartas.get(0).getNumero());
-        this.cartas.remove(0);
-        return carta;
+        if (cartas.isEmpty()){
+            throw new IllegalArgumentException("O baralho está vazio");
+        }
+
+        return cartas.remove(0);
     }
 
     // Métodos auxiliares
