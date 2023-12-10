@@ -1,6 +1,9 @@
+package baralho;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import cartas.Carta;
 
 /**
  * A classe Baralho representa um baralho de cartas, contendo métodos para criar, embaralhar e distribuir cartas.

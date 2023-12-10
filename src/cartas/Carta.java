@@ -1,3 +1,4 @@
+package cartas;
 /**
  * A classe Carta representa uma carta de um baralho, com um número associado e uma pontuação.
  * As cartas são comparáveis com base em seus números.

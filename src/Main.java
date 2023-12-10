@@ -1,3 +1,5 @@
+import jogo.Jogo;
+
 /**
  * A classe Main é a classe principal que contém o método main para iniciar o jogo.
  */

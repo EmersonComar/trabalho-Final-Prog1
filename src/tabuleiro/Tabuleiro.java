@@ -1,5 +1,10 @@
+package tabuleiro;
 import java.util.ArrayList;
 import java.util.List;
+
+import baralho.Baralho;
+import cartas.Carta;
+import jogador.Jogador;
 
 /**
  * A classe Tabuleiro representa o tabuleiro de jogo com trilhas de cartas.

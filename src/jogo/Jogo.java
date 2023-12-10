@@ -1,9 +1,15 @@
+package jogo;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
+
+import baralho.Baralho;
+import cartas.Carta;
+import jogador.Jogador;
+import tabuleiro.Tabuleiro;
 
 /**
  * A classe Jogo representa um jogo de cartas com jogadores, um baralho e um tabuleiro.
