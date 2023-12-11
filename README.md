@@ -9,8 +9,8 @@ A explicação completa do funcionamento do projeto pode ser acessada </br>
 através do link [docs](docs/)
 
 ## Aprendizados e referências para futuras consultas:
-- Link 1
-- Link 2
+- [Curso básico de Java]([docs/](https://www.youtube.com/watch?v=X8AnVQ-GqLU&list=PLx4x_zx8csUjFC5WWjoNUL7LOOD7LCKRW))
+- [Curso Lambda, Streams e Optional](https://www.youtube.com/watch?v=lbCYLgoVpfQ&list=PLuYctAHjg89ZkhgOQo0zcTtmHY5nuRYud)
 
 ## Implementações futuras
 - Interface gráfica
